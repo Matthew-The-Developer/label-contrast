@@ -59,7 +59,13 @@
   </mat-slider>
 </div>
 
-<mat-slide-toggle [(ngModel)]="effectDisabledLabels" labelPosition="before">Effect disabled form field labels</mat-slide-toggle>
+<div class="contrast-slider">
+  <small class="label">Disabled label opacity:</small>
+
+  <mat-slider [displayWith]="formatLabel" min="0" max="1" step="0.01" discrete>
+    <input [(ngModel)]="disabledLabelOpacity" matSliderThumb>
+  </mat-slider>
+</div>
 
 <mat-divider></mat-divider>
 
@@ -71,4 +77,11 @@
   </mat-slider>
 </div>
 
-<mat-slide-toggle [(ngModel)]="effectDisabledValues" labelPosition="before">Effect disabled form field values</mat-slide-toggle>
+<div class="contrast-slider">
+  <small class="label">Disabled value opacity:</small>
+
+  <mat-slider [displayWith]="formatLabel" min="0" max="1" step="0.01" discrete>
+    <input [(ngModel)]="disabledValueOpacity" matSliderThumb>
+  </mat-slider>
+</div>
+

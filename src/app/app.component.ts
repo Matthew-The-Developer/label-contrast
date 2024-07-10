@@ -33,20 +33,37 @@ import { MatSliderModule } from '@angular/material/slider';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  opacity = signal<number>(0.6);
-  effectDisabled = signal<boolean>(false);
+  labelOpacity = signal<number>(0.6);
+  effectDisabledLabels = signal<boolean>(false);
+  
+  valueOpacity = signal<number>(0.87);
+  effectDisabledValues = signal<boolean>(false);
 
   constructor() {
     effect(() => {
-      const opacity = this.opacity();
-      const effectDisabled = this.effectDisabled();
+      const opacity = this.labelOpacity();
+      const effectDisabled = this.effectDisabledLabels();
 
       document.documentElement.style.setProperty('--mdc-outlined-text-field-label-text-color', `rgba(0, 0, 0, ${opacity})`);
-
+      
       if (effectDisabled){
         document.documentElement.style.setProperty('--mdc-outlined-text-field-disabled-label-text-color', `rgba(0, 0, 0, ${opacity})`);
       } else {
         document.documentElement.style.setProperty('--mdc-outlined-text-field-disabled-label-text-color', 'rgba(26, 27, 31, 0.38)');
+      }
+    });
+    
+    effect(() => {
+      const opacity = this.valueOpacity();
+      const effectDisabled = this.effectDisabledValues();
+
+      document.documentElement.style.setProperty('--mdc-outlined-text-field-input-text-color', `rgba(0, 0, 0, ${opacity})`);
+      document.documentElement.style.setProperty('--mat-select-enabled-trigger-text-color', `rgba(0, 0, 0, ${opacity})`);
+
+      if (effectDisabled){
+        document.documentElement.style.setProperty('--mdc-outlined-text-field-disabled-input-text-color', `rgba(0, 0, 0, ${opacity})`);
+      } else {
+        document.documentElement.style.setProperty('--mdc-outlined-text-field-disabled-input-text-color', 'rgba(26, 27, 31, 0.38)');
       }
     });
   }

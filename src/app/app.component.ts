@@ -6,6 +6,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
@@ -17,6 +18,7 @@ import { MatSliderModule } from '@angular/material/slider';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatSlideToggleModule,
     MatSliderModule,
   ],
   providers: [
@@ -32,12 +34,20 @@ import { MatSliderModule } from '@angular/material/slider';
 })
 export class AppComponent {
   opacity = signal<number>(0.6);
+  effectDisabled = signal<boolean>(false);
 
   constructor() {
     effect(() => {
       const opacity = this.opacity();
+      const effectDisabled = this.effectDisabled();
 
       document.documentElement.style.setProperty('--mdc-outlined-text-field-label-text-color', `rgba(0, 0, 0, ${opacity})`);
+
+      if (effectDisabled){
+        document.documentElement.style.setProperty('--mdc-outlined-text-field-disabled-label-text-color', `rgba(0, 0, 0, ${opacity})`);
+      } else {
+        document.documentElement.style.setProperty('--mdc-outlined-text-field-disabled-label-text-color', 'rgba(26, 27, 31, 0.38)');
+      }
     });
   }
 

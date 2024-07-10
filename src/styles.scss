@@ -26,6 +26,7 @@ $label-contrast-theme: mat.define-theme((
 // that you are using.
 :root {
   @include mat.all-component-themes($label-contrast-theme);
+  @include mat.form-field-density(-3);
 }
 
 // Comment out the line below if you want to use the pre-defined typography utility classes.

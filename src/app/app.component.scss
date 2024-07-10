@@ -1,0 +1,36 @@
+:host {
+  height: calc(inherit - 2rem);
+  
+  display: grid;
+  place-content: start center;
+  gap: 1rem;
+  
+  padding: 1rem;
+
+  form {
+    width: 40rem;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    .span {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .contrast-slider {
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+
+    justify-content: center;
+
+    padding-top: 0.5rem;
+
+    .label {
+      align-self: center;
+    }
+  }
+}
